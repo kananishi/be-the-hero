@@ -1,10 +1,9 @@
 const connection = require('../database/connection')
-const repository = connection('ongs')
 
 module.exports = {
     async create(request, response){
         const {id} = request.body;
-        const ong = await repository
+        const ong = await connection('ongs')
             .where('id', id)
             .select('name')
             .first();
